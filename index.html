@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TheRajasthaniTaste</title>
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<header>
+  <h1>TheRajasthaniTaste</h1>
+  <p>Authentic Homemade Rajasthani Snacks</p>
+</header>
+
+<section class="products">
+  <h2>Our Products (Per Kg)</h2>
+
+  <div class="product" data-name="Chana Khakhra" data-price="350">
+    <h3>Chana Khakhra</h3>
+    <p>₹350 / kg</p>
+    <button onclick="addToCart(this)">Add to Cart</button>
+  </div>
+
+  <div class="product" data-name="Gehu Khakhra" data-price="350">
+    <h3>Gehu Khakhra</h3>
+    <p>₹350 / kg</p>
+    <button onclick="addToCart(this)">Add to Cart</button>
+  </div>
+
+  <div class="product" data-name="Morh Khakhra" data-price="350">
+    <h3>Morh Khakhra</h3>
+    <p>₹350 / kg</p>
+    <button onclick="addToCart(this)">Add to Cart</button>
+  </div>
+
+  <div class="product" data-name="Mogar Puri" data-price="450">
+    <h3>Mogar Puri</h3>
+    <p>₹450 / kg</p>
+    <button onclick="addToCart(this)">Add to Cart</button>
+  </div>
+
+  <div class="product" data-name="Besan Puri" data-price="450">
+    <h3>Besan Puri</h3>
+    <p>₹450 / kg</p>
+    <button onclick="addToCart(this)">Add to Cart</button>
+  </div>
+
+  <div class="product" data-name="Gehu Khichiya" data-price="180">
+    <h3>Gehu Khichiya</h3>
+    <p>₹180 / kg</p>
+    <button onclick="addToCart(this)">Add to Cart</button>
+  </div>
+
+  <div class="product" data-name="Chawal Khichiya" data-price="200">
+    <h3>Chawal Khichiya</h3>
+    <p>₹200 / kg</p>
+    <button onclick="addToCart(this)">Add to Cart</button>
+  </div>
+</section>
+
+<section class="cart">
+  <h2>Your Cart</h2>
+  <ul id="cartItems"></ul>
+  <h3>Total: ₹<span id="total">0</span></h3>
+  <a id="payBtn" target="_blank">Pay via UPI</a>
+</section>
+
+<section class="feedback">
+  <h2>Customer Feedback</h2>
+  <textarea placeholder="Write your feedback..."></textarea>
+  <br>
+  <select>
+    <option>⭐</option>
+    <option>⭐⭐</option>
+    <option>⭐⭐⭐</option>
+    <option>⭐⭐⭐⭐</option>
+    <option>⭐⭐⭐⭐⭐</option>
+  </select>
+  <br>
+  <button>Submit Feedback</button>
+</section>
+
+<footer>
+  <p><strong>Owner:</strong> Rajkumari Ranka</p>
+  <p><strong>Contact & Payment:</strong> 9928166780</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
