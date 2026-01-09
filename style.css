@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff7ec;
+}
+
+header {
+  background: #8b2c1f;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.products, .cart, .feedback {
+  padding: 20px;
+}
+
+.product {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+button {
+  background: #e65100;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart {
+  background: #fff3e0;
+}
+
+#payBtn {
+  display: inline-block;
+  margin-top: 10px;
+  background: green;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+footer {
+  background: #4e342e;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
