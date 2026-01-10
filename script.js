@@ -1,29 +1,29 @@
-let cart = [];
-let total = 0;
-
-function addToCart(btn) {
-  let product = btn.parentElement;
-  let name = product.dataset.name;
-  let price = parseInt(product.dataset.price);
-
-  cart.push({name, price});
-  total += price;
-
-  renderCart();
+<script>
+// QR & WhatsApp Update Function
+function updateCheckout() {
+    const total = parseInt(document.getElementById('total').textContent) || 0;
+    
+    // QR amount show
+    const qrAmount = document.getElementById('qr-total');
+    if (qrAmount) qrAmount.textContent = total;
+    
+    // WhatsApp order message
+    const name = document.getElementById('name') ? document.getElementById('name').value : 'Customer';
+    const phone = document.getElementById('phone') ? document.getElementById('phone').value : '';
+    const address = document.getElementById('address') ? document.getElementById('address').value : '';
+    
+    const whatsappBtn = document.getElementById('whatsapp-confirm') || document.getElementById('whatsapp-order');
+    if (whatsappBtn) {
+        whatsappBtn.href = `https://wa.me/919928166780?text=*TheRajasthaniTaste Order*%0A%0A👤 Name: ${name}%0A📱 Phone: ${phone}%0A📍 Address: ${address}%0A%0A💰 *Total: ₹${total}*%0A🛒 Items: ${cart.map(item => item.name + ' x' + item.qty + 'kg').join('%0A')}`;
+    }
 }
 
-function renderCart() {
-  let list = document.getElementById("cartItems");
-  list.innerHTML = "";
+// Cart render hone ke baad call karo (renderCart function ke end mein add)
+document.addEventListener('DOMContentLoaded', function() {
+    // Existing code...
+    updateCheckout(); // Yeh line add karo
+});
 
-  cart.forEach(item => {
-    let li = document.createElement("li");
-    li.textContent = item.name + " - ₹" + item.price;
-    list.appendChild(li);
-  });
-
-  document.getElementById("total").innerText = total;
-
-  let upiLink = `upi://pay?pa=9928166780@upi&pn=Rajkumari Ranka&am=${total}&cu=INR`;
-  document.getElementById("payBtn").href = upiLink;
-}
+// Form change pe update
+document.addEventListener('input', updateCheckout);
+</script>
