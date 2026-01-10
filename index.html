@@ -59,10 +59,41 @@
         .remove { background: #ef4444; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 50%; cursor: pointer; }
 
         /* Checkout */
-        .checkout { display: none; }
-        .form-group { margin-bottom: 1rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
-        .form-group input { width: 100%; padding: 1rem; border: 1px solid #d1d5db; border-radius: 10px; }
+        <div class="checkout" id="checkout">
+    <h4 style="text-align:center;">🛒 Order Details</h4>
+    <div id="cart-items"></div>
+    <div style="text-align:center; padding:1.5rem; background:#fef3c7; border-radius:15px; margin:1.5rem 0; font-size:1.4rem; font-weight:bold; color:#b91c1c;">
+        Total Amount: ₹<span id="total-price">0</span>
+    </div>
+    
+    <!-- QR PAYMENT -->
+    <div style="text-align:center; padding:2rem; background:#f0fdf4; border-radius:25px; box-shadow:0 10px 40px rgba(34,197,94,.2); margin-bottom:1.5rem;">
+        <h5 style="color:#166534; margin-bottom:1rem;">💳 Instant Payment (No Charges)</h5>
+        <img src="qr.png" alt="Scan to Pay TheRajasthaniTaste" style="width:100%; max-width:300px; border-radius:20px; box-shadow:0 15px 35px rgba(0,0,0,.2);">
+        <p style="font-size:1.3rem; font-weight:700; color:#059669; margin:1rem 0;">Pay ₹<span id="qr-amount">0</span></p>
+        <p style="color:#6b7280;">PhonePe / Google Pay / Paytm / BHIM</p>
+    </div>
+    
+    <!-- Customer Info -->
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" id="c-name" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:10px; margin-bottom:1rem;" required>
+    </div>
+    <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" id="c-phone" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:10px; margin-bottom:1rem;" required>
+    </div>
+    <div class="form-group">
+        <label>Delivery Address</label>
+        <textarea id="c-address" rows="4" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:10px;" required></textarea>
+    </div>
+    
+    <a id="send-order" class="btn" target="_blank" style="width:100%; background:#25d366 !important; font-size:1.1rem; margin-bottom:1rem;">
+        ✅ Confirm & Send to Owner (WhatsApp)
+    </a>
+    <button onclick="clearCart()" class="btn" style="width:100%; background:#6b7280;">🗑️ Clear Cart</button>
+</div>
+
 
         /* About & Contact */
         .about, .contact { text-align: center; }
@@ -376,4 +407,5 @@
     </script>
 </body>
 </html>
+
 
