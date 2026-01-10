@@ -1,411 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheRajasthaniTaste - Authentic Homemade Rajasthani Snacks</title>
-    <meta name="description" content="Premium homemade Rajasthani Khakhra, Puri, Khichiya by Rajkumari Ranka. Order online with UPI payments. Fresh, traditional taste from Bikaner.">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #4a4a4a; background: linear-gradient(135deg, #f8f1e9 0%, #e8d5b7 100%); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TheRajasthaniTaste</title>
 
-        /* Navigation */
-        nav { background: linear-gradient(135deg, #d97706, #b91c1c); position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        nav .container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 20px; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fef3c7; font-weight: 700; }
-        .nav-links { display: flex; list-style: none; }
-        .nav-links a { color: #fef3c7; text-decoration: none; margin-left: 2rem; font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover { color: #fff; }
-        .cart { position: relative; font-size: 1.5rem; color: #fef3c7; cursor: pointer; }
-        .cart-count { position: absolute; top: -8px; right: -8px; background: #ef4444; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; }
-        .hamburger span { width: 25px; height: 3px; background: #fef3c7; margin: 3px 0; transition: 0.3s; }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        /* Hero Banner */
-        .hero { background: linear-gradient(rgba(217,119,6,0.8), rgba(185,28,28,0.8)), url('https://images.unsplash.com/photo-1603048297194-8f7d9e7f8d8b?w=1200'); background-size: cover; background-position: center; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white; margin-top: 70px; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.5rem; margin-bottom: 2rem; }
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins;background:#f8f1e9}
+.container{max-width:1200px;margin:auto;padding:0 20px}
+.btn{background:linear-gradient(135deg,#d97706,#b91c1c);color:#fff;border:none;padding:12px 20px;border-radius:30px;cursor:pointer;font-weight:600}
+nav{background:#b91c1c;color:#fff;position:fixed;width:100%;top:0;z-index:999}
+nav .container{display:flex;justify-content:space-between;align-items:center;padding:15px}
+.logo{font-size:24px;font-weight:700}
+.hero{height:100vh;background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.6)),url('https://images.unsplash.com/photo-1603048297194-8f7d9e7f8d8b');background-size:cover;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.product-card{background:#fff;border-radius:20px;padding:20px;text-align:center}
+.cart-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6)}
+.cart-content{background:#fff;width:90%;max-width:500px;margin:80px auto;padding:20px;border-radius:20px}
+</style>
+</head>
 
-        /* Sections */
-        section { padding: 80px 0; }
-        h2 { font-family: 'Playfair Display', serif; font-size: 3rem; text-align: center; color: #b91c1c; margin-bottom: 3rem; }
+<body>
 
-        /* Products */
-        .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
-        .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-        .product-img { height: 250px; background: #f3f4f6; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #d1d5db; }
-        .product-info { padding: 1.5rem; }
-        .product-name { font-size: 1.3rem; font-weight: 600; color: #b91c1c; margin-bottom: 0.5rem; }
-        .price { font-size: 1.5rem; font-weight: 700; color: #d97706; margin-bottom: 1rem; }
-        .quantity { display: flex; align-items: center; margin-bottom: 1rem; }
-        .quantity input { width: 60px; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 5px; text-align: center; margin: 0 1rem; }
-        .btn { background: linear-gradient(135deg, #d97706, #b91c1c); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 50px; cursor: pointer; font-weight: 600; transition: all 0.3s; width: 100%; }
-        .btn:hover { transform: scale(1.05); }
-        .reviews { margin-top: 1rem; }
-        .stars { color: #fbbf24; }
-        .review-form { display: none; margin-top: 1rem; }
-        .review-form input, .review-form textarea { width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #d1d5db; border-radius: 10px; }
-        .avg-rating { text-align: center; font-weight: 600; color: #059669; }
+<nav>
+<div class="container">
+<div class="logo">TheRajasthaniTaste</div>
+<div id="cart-toggle" style="cursor:pointer">🛒 <span id="cart-count">0</span></div>
+</div>
+</nav>
 
-        /* Cart */
-        .cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; }
-        .cart-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 20px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; }
-        .cart-item { display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb; }
-        .remove { background: #ef4444; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 50%; cursor: pointer; }
+<section class="hero">
+<div>
+<h1>TheRajasthaniTaste</h1>
+<p>Authentic Homemade Rajasthani Snacks</p>
+<a href="#products" class="btn">Shop Now</a>
+</div>
+</section>
 
-        /* Checkout */
-        <div class="checkout" id="checkout">
-    <h4 style="text-align:center;">🛒 Order Details</h4>
-    <div id="cart-items"></div>
-    <div style="text-align:center; padding:1.5rem; background:#fef3c7; border-radius:15px; margin:1.5rem 0; font-size:1.4rem; font-weight:bold; color:#b91c1c;">
-        Total Amount: ₹<span id="total-price">0</span>
-    </div>
-    
-    <!-- QR PAYMENT -->
-    <div style="text-align:center; padding:2rem; background:#f0fdf4; border-radius:25px; box-shadow:0 10px 40px rgba(34,197,94,.2); margin-bottom:1.5rem;">
-        <h5 style="color:#166534; margin-bottom:1rem;">💳 Instant Payment (No Charges)</h5>
-        <img src="qr.png" alt="Scan to Pay TheRajasthaniTaste" style="width:100%; max-width:300px; border-radius:20px; box-shadow:0 15px 35px rgba(0,0,0,.2);">
-        <p style="font-size:1.3rem; font-weight:700; color:#059669; margin:1rem 0;">Pay ₹<span id="qr-amount">0</span></p>
-        <p style="color:#6b7280;">PhonePe / Google Pay / Paytm / BHIM</p>
-    </div>
-    
-    <!-- Customer Info -->
-    <div class="form-group">
-        <label>Name</label>
-        <input type="text" id="c-name" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:10px; margin-bottom:1rem;" required>
-    </div>
-    <div class="form-group">
-        <label>Phone</label>
-        <input type="tel" id="c-phone" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:10px; margin-bottom:1rem;" required>
-    </div>
-    <div class="form-group">
-        <label>Delivery Address</label>
-        <textarea id="c-address" rows="4" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:10px;" required></textarea>
-    </div>
-    
-    <a id="send-order" class="btn" target="_blank" style="width:100%; background:#25d366 !important; font-size:1.1rem; margin-bottom:1rem;">
-        ✅ Confirm & Send to Owner (WhatsApp)
-    </a>
-    <button onclick="clearCart()" class="btn" style="width:100%; background:#6b7280;">🗑️ Clear Cart</button>
+<section id="products" class="container" style="padding:80px 0">
+<h2 style="text-align:center;margin-bottom:30px">Our Products</h2>
+<div class="products" id="products-grid"></div>
+</section>
+
+<!-- CART -->
+<div class="cart-modal" id="cart-modal">
+<div class="cart-content">
+<h3>Order Summary</h3>
+<div id="cart-items"></div>
+
+<p style="margin:15px 0;font-weight:bold">Total: ₹<span id="total">0</span></p>
+
+<div style="text-align:center;background:#f0fdf4;padding:15px;border-radius:15px">
+<h4>Scan & Pay</h4>
+<img src="qr.png" style="max-width:250px;width:100%">
+<p style="font-size:18px;color:#059669">Pay ₹<span id="qr-amount">0</span></p>
 </div>
 
+<input id="name" placeholder="Name" style="width:100%;margin:8px 0;padding:10px">
+<input id="phone" placeholder="Phone" style="width:100%;margin:8px 0;padding:10px">
+<textarea id="address" placeholder="Address" style="width:100%;margin:8px 0;padding:10px"></textarea>
 
-        /* About & Contact */
-        .about, .contact { text-align: center; }
-        .owner { font-size: 1.2rem; color: #b91c1c; font-weight: 600; }
-        .contact form { max-width: 500px; margin: 0 auto; }
-        .trust-badges { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
-        .badge { background: #10b981; color: white; padding: 1rem; border-radius: 10px; }
+<button onclick="confirmOrder()" class="btn" style="background:#16a34a;width:100%">
+✅ I Have Paid – Confirm Order
+</button>
 
-        /* Footer */
-        footer { background: #4a4a4a; color: white; text-align: center; padding: 2rem 0; }
-        .upi-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-        .upi-btn { background: #059669; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; text-decoration: none; font-weight: 600; }
+<button onclick="closeCart()" class="btn" style="background:#6b7280;width:100%;margin-top:10px">
+Close
+</button>
+</div>
+</div>
 
-        /* Animations */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .product-card, .about p { animation: fadeInUp 0.6s ease forwards; }
+<footer style="background:#4a4a4a;color:#fff;text-align:center;padding:20px">
+<p>© 2026 TheRajasthaniTaste | Rajkumari Ranka</p>
+<a href="https://wa.me/919928166780" style="color:#25d366">WhatsApp Order</a>
+</footer>
 
-        /* Mobile */
-        @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-links { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: #d97706; flex-direction: column; justify-content: start; align-items: center; padding-top: 2rem; transition: 0.3s; }
-            .nav-links.active { left: 0; }
-            .hero h1 { font-size: 2.5rem; }
-            .products { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <div class="container">
-            <div class="logo">TheRajasthaniTaste</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#" id="cart-toggle"><i class="fas fa-shopping-cart"></i> <span class="cart-count" id="cart-count">0</span></a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-    </nav>
+<script>
+const products=[
+{id:1,name:'Chana Khakhra',price:350},
+{id:2,name:'Gehu Khakhra',price:350},
+{id:3,name:'Moth Khakhra',price:350},
+{id:4,name:'Mogar Puri',price:450},
+{id:5,name:'Besan Puri',price:450},
+{id:6,name:'Gehu Khichiya',price:180},
+{id:7,name:'Chawal Khichiya',price:200},
+];
 
-    <section id="home" class="hero">
-        <div>
-            <h1>TheRajasthaniTaste</h1>
-            <p>Authentic Homemade Rajasthani Snacks by Rajkumari Ranka<br>Fresh Khakhra, Puri & Khichiya Delivered to Your Door</p>
-            <a href="#products" class="btn" style="display: inline-block; font-size: 1.2rem;">Shop Now</a>
-        </div>
-    </section>
+let cart=[];
 
-    <section id="products">
-        <div class="container">
-            <h2>Our Premium Snacks</h2>
-            <div class="products" id="products-grid">
-                <!-- Products will be populated by JS -->
-            </div>
-        </div>
-    </section>
+const grid=document.getElementById('products-grid');
+products.forEach(p=>{
+grid.innerHTML+=`
+<div class="product-card">
+<h3>${p.name}</h3>
+<p>₹${p.price}/kg</p>
+<button class="btn" onclick="addToCart(${p.id})">Add</button>
+</div>`;
+});
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>Indulge in the rich, authentic flavors of Rajasthan with TheRajasthaniTaste. Crafted with love by Rajkumari Ranka using traditional recipes and freshest ingredients from Bikaner. Hygienic, homemade, and packed with royal taste – perfect for tea time or gifting.</p>
-            <p class="owner">Owner: Rajkumari Ranka</p>
-            <div class="trust-badges">
-                <div class="badge"><i class="fas fa-shield-alt"></i> 100% Homemade</div>
-                <div class="badge"><i class="fas fa-star"></i> 5-Star Reviews</div>
-                <div class="badge"><i class="fas fa-truck"></i> Fast Delivery</div>
-            </div>
-        </div>
-    </section>
+function addToCart(id){
+const p=products.find(x=>x.id===id);
+const item=cart.find(i=>i.id===id);
+item?item.qty++:cart.push({...p,qty:1});
+updateCart();
+}
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <p>Call/WhatsApp: <a href="tel:9928166780" style="color: #b91c1c; font-weight: 600;">9928166780</a></p>
-            <form id="contact-form">
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" required>
-                </div>
-                <div class="form-group">
-                    <label>Phone</label>
-                    <input type="tel" required>
-                </div>
-                <div class="form-group">
-                    <label>Message</label>
-                    <textarea rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn">Send Enquiry</button>
-            </form>
-        </div>
-    </section>
+function updateCart(){
+document.getElementById('cart-count').innerText=cart.reduce((s,i)=>s+i.qty,0);
+}
 
-    <!-- Cart Modal -->
-    <div class="cart-modal" id="cart-modal">
-        <div class="cart-content">
-            <h3>Shopping Cart</h3>
-            <div id="cart-items"></div>
-            <div class="checkout" id="checkout">
-                <h4>Total: ₹<span id="total">0</span></h4>
-                <form id="checkout-form">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel" id="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Address</label>
-                        <textarea id="address" rows="3" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Pay with UPI/Card</button>
-                </form>
-            </div>
-            <button class="btn" id="close-cart" style="background: #6b7280; margin-top: 1rem;">Close</button>
-        </div>
-    </div>
+document.getElementById('cart-toggle').onclick=()=>{
+renderCart();
+document.getElementById('cart-modal').style.display='block';
+}
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 TheRajasthaniTaste by Rajkumari Ranka. All rights reserved. | Bikaner, Rajasthan</p>
-            <div class="upi-buttons">
-                <a href="upi://pay?pa=9928166780@paytm&pn=TheRajasthaniTaste&am=" class="upi-btn" target="_blank">Paytm</a>
-                <a href="upi://pay?pa=9928166780@phonepe&pn=TheRajasthaniTaste&am=" class="upi-btn" target="_blank">PhonePe</a>
-                <a href="https://wa.me/919928166780" class="upi-btn"><i class="fab fa-whatsapp"></i> WhatsApp Order</a>
-            </div>
-        </div>
-    </footer>
+function closeCart(){
+document.getElementById('cart-modal').style.display='none';
+}
 
-    <script>
-        // Products Data
-        const products = [
-            { id: 1, name: 'Chana Khakhra', price: 350, img: '🍪' },
-            { id: 2, name: 'Gehu Khakhra', price: 350, img: '🌾' },
-            { id: 3, name: 'Moth Khakhra', price: 350, img: '🥜' },
-            { id: 4, name: 'Mogar Puri', price: 450, img: '🥞' },
-            { id: 5, name: 'Besan Puri', price: 450, img: '🫓' },
-            { id: 6, name: 'Gehu Khichiya', price: 180, img: '🍲' },
-            { id: 7, name: 'Chawal Khichiya', price: 200, img: '🍚' }
-        ];
+function renderCart(){
+let total=0;
+document.getElementById('cart-items').innerHTML=cart.map(i=>{
+total+=i.price*i.qty;
+return `<p>${i.name} x ${i.qty} = ₹${i.price*i.qty}</p>`;
+}).join('');
+document.getElementById('total').innerText=total;
+document.getElementById('qr-amount').innerText=total;
+}
 
-        let cart = [];
-        let reviews = {}; // {productId: [{rating, comment}]}
+function confirmOrder(){
+if(!cart.length)return alert('Cart empty');
 
-        // Init
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
-            setupNav();
-            document.getElementById('contact-form').addEventListener('submit', (e) => {
-                e.preventDefault();
-                alert('Enquiry sent! We will contact you on WhatsApp.');
-                e.target.reset();
-            });
-        });
+const name=nameInput.value;
+const phone=phoneInput.value;
+const address=addressInput.value;
+const total=document.getElementById('total').innerText;
 
-        function renderProducts() {
-            const grid = document.getElementById('products-grid');
-            products.forEach(product => {
-                const div = document.createElement('div');
-                div.className = 'product-card';
-                div.innerHTML = `
-                    <div class="product-img">${product.img}</div>
-                    <div class="product-info">
-                        <div class="product-name">${product.name}</div>
-                        <div class="price">₹${product.price}/kg</div>
-                        <div class="avg-rating">${getAvgRating(product.id)} <i class="fas fa-star stars"></i></div>
-                        <div class="quantity">
-                            <label>Qty (kg):</label>
-                            <input type="number" id="qty-${product.id}" value="1" min="1" max="10">
-                        </div>
-                        <button class="btn" onclick="addToCart(${product.id})">Add to Cart</button>
-                        <div class="reviews">
-                            <small onclick="toggleReview(${product.id})" style="cursor: pointer; color: #d97706;">Add Review</small>
-                            <div class="review-form" id="review-${product.id}">
-                                <select id="rating-${product.id}">
-                                    <option>5</option><option>4</option><option>3</option><option>2</option><option>1</option>
-                                </select>
-                                <input type="text" id="comment-${product.id}" placeholder="Your review">
-                                <button onclick="submitReview(${product.id})" class="btn" style="width: auto; font-size: 0.9rem;">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(div);
-            });
-        }
+if(!name||!phone||!address)return alert('Fill all details');
 
-        function getAvgRating(id) {
-            const userReviews = reviews[id] || [];
-            if (userReviews.length === 0) return 'No reviews';
-            const avg = userReviews.reduce((sum, r) => sum + r.rating, 0) / userReviews.length;
-            return `⭐ ${avg.toFixed(1)} (${userReviews.length})`;
-        }
+let items=cart.map(i=>`${i.name} x${i.qty}`).join('%0A');
 
-        function toggleReview(id) {
-            const form = document.getElementById(`review-${id}`);
-            form.style.display = form.style.display === 'block' ? 'none' : 'block';
-        }
+window.open(`https://wa.me/919928166780?text=*New Order*%0A${items}%0A%0ATotal ₹${total}%0APaid via QR`,'_blank');
 
-        function submitReview(id) {
-            const rating = parseInt(document.getElementById(`rating-${id}`).value);
-            const comment = document.getElementById(`comment-${id}`).value;
-            if (!reviews[id]) reviews[id] = [];
-            reviews[id].push({ rating, comment });
-            document.getElementById(`comment-${id}`).value = '';
-            renderProducts(); // Refresh ratings
-            alert('Review added!');
-        }
+cart=[];
+updateCart();
+closeCart();
+}
 
-        function addToCart(id) {
-            const qty = parseInt(document.getElementById(`qty-${id}`).value);
-            const product = products.find(p => p.id === id);
-            const item = cart.find(i => i.id === id);
-            if (item) {
-                item.qty += qty;
-            } else {
-                cart.push({ ...product, qty });
-            }
-            updateCart();
-        }
+const nameInput=document.getElementById('name');
+const phoneInput=document.getElementById('phone');
+const addressInput=document.getElementById('address');
+</script>
 
-        function updateCart() {
-            document.getElementById('cart-count').textContent = cart.reduce((sum, i) => sum + i.qty, 0);
-        }
-
-        // Cart Modal
-        document.getElementById('cart-toggle').addEventListener('click', () => {
-            renderCart();
-            document.getElementById('cart-modal').style.display = 'block';
-        });
-        document.getElementById('close-cart').addEventListener('click', () => {
-            document.getElementById('cart-modal').style.display = 'none';
-        });
-
-        function renderCart() {
-            const items = document.getElementById('cart-items');
-            const totalEl = document.getElementById('total');
-            let total = 0;
-            items.innerHTML = cart.map(item => {
-                const sub = item.price * item.qty;
-                total += sub;
-                return `
-                    <div class="cart-item">
-                        <span>${item.name} x${item.qty}kg</span>
-                        <span>₹${sub} <button class="remove" onclick="removeFromCart(${item.id})">×</button></span>
-                    </div>
-                `;
-            }).join('');
-            totalEl.textContent = total;
-            document.getElementById('checkout').style.display = cart.length ? 'block' : 'none';
-        }
-
-        function removeFromCart(id) {
-            cart = cart.filter(i => i.id !== id);
-            renderCart();
-            updateCart();
-        }
-
-        // Razorpay Payment
-        document.getElementById('checkout-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            const total = parseInt(document.getElementById('total').textContent);
-
-            const options = {
-                key: 'rzp_test_your_key_here', // Replace with your Razorpay test key
-                amount: total * 100,
-                currency: 'INR',
-                name: 'TheRajasthaniTaste',
-                description: `Order by ${name}, Phone: ${phone}, Address: ${address}`,
-                handler: (response) => {
-                    alert('Payment Successful! Order ID: ' + response.razorpay_payment_id + '\nWe will confirm via WhatsApp.');
-                    cart = [];
-                    updateCart();
-                    document.getElementById('cart-modal').style.display = 'none';
-                }
-            };
-            const rzp = new Razorpay(options);
-            rzp.open();
-        });
-
-        // Nav Mobile
-        function setupNav() {
-            const hamburger = document.getElementById('hamburger');
-            const navLinks = document.querySelector('.nav-links');
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                hamburger.classList.toggle('active');
-            });
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    hamburger.classList.remove('active');
-                });
-            });
-            // Smooth scroll
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-        }
-    </script>
 </body>
 </html>
-
 
