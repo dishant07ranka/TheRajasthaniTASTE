@@ -1,216 +1,740 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheRajasthaniTaste - Authentic Homemade Rajasthani Snacks | Rajkumari Ranka</title>
-    <meta name="description" content="Premium homemade Rajasthani snacks like Chana Khakhra ₹350/kg, Mogar Puri ₹450/kg. Order online with UPI QR payments. Bikaner, Rajasthan. Fast delivery.">
-    <meta name="keywords" content="Rajasthani snacks, khakhra, puri, homemade food Bikaner, Rajasthani taste, online order">
-    <meta name="author" content="Rajkumari Ranka - TheRajasthaniTaste">
-    <meta property="og:title" content="TheRajasthaniTaste - Pure Rajasthani Flavors">
-    <meta property="og:description" content="Authentic homemade khakhra, puri, khichiya. Freshly made with love from Bikaner.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1566908761418-5e2acac6c989?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80">
-    <meta property="og:url" content="https://dishant07ranka.github.io/TheRajasthaniTASTE/">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌶️</text></svg>">
-    <style>
-        :root {
-            --saffron: #FF9933;
-            --maroon: #8B0000;
-            --beige: #F5F5DC;
-            --gold: #FFD700;
-            --dark: #2C1810;
-            --light-bg: #FFF8F0;
-            --shadow: 0 10px 30px rgba(139,0,0,0.2);
-            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; line-height: 1.7; color: var(--dark); background: linear-gradient(135deg, var(--beige) 0%, var(--light-bg) 100%); overflow-x: hidden; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
-        /* Header & Nav */
-        header { background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: var(--shadow); }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
-        .logo { font-family: 'Rajdhani', sans-serif; font-size: 2rem; font-weight: 700; background: linear-gradient(45deg, var(--saffron), var(--maroon)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; position: relative; transition: var(--transition); }
-        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 3px; background: var(--saffron); transition: var(--transition); }
-        .nav-links a:hover::after { width: 100%; }
-        .cart-btn { background: var(--saffron); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: var(--transition); position: relative; }
-        .cart-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-        .cart-count { position: absolute; top: -8px; right: -8px; background: var(--maroon); color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; }
-        
-        /* Hero Banner */
-        .hero { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1566908761418-5e2acac6c989?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; height: 100vh; display: flex; align-items: center; text-align: center; color: white; position: relative; }
-        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle, rgba(255,153,51,0.3) 0%, transparent 70%); }
-        .hero-content { max-width: 800px; animation: fadeInUp 1.2s ease-out; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
-        .hero h1 { font-family: 'Rajdhani', sans-serif; font-size: clamp(3rem, 8vw, 6rem); margin-bottom: 1rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .hero p { font-size: 1.5rem; margin-bottom: 2rem; }
-        .cta-btn { background: var(--saffron); color: white; padding: 1.2rem 3rem; font-size: 1.2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; transition: var(--transition); box-shadow: var(--shadow); }
-        .cta-btn:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(255,153,51,0.4); }
-        
-        /* Section Styles */
-        section { padding: 100px 0; }
-        .section-title { font-family: 'Rajdhani', sans-serif; font-size: 3rem; text-align: center; margin-bottom: 4rem; background: linear-gradient(45deg, var(--maroon), var(--saffron)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; }
-        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: var(--gold); border-radius: 2px; }
-        
-        /* Products */
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); position: relative; }
-        .product-card:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
-        .product-image { height: 250px; background-size: cover; background-position: center; position: relative; }
-        .product-image img { width: 100%; height: 100%; object-fit: cover; }
-        .product-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); opacity: 0; transition: var(--transition); display: flex; flex-direction: column; justify-content: end; padding: 1rem; color: white; }
-        .product-card:hover .product-overlay { opacity: 1; }
-        .rating { display: flex; gap: 0.2rem; margin-bottom: 0.5rem; }
-        .star { color: var(--gold); }
-        .product-info { padding: 1.5rem; }
-        .product-name { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .product-price { font-size: 1.8rem; font-weight: 700; color: var(--saffron); margin-bottom: 1rem; }
-        .qty-selector { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-        .qty-btn { background: var(--beige); border: 2px solid var(--saffron); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; transition: var(--transition); }
-        .qty-btn:hover { background: var(--saffron); color: white; }
-        .add-to-cart { width: 100%; background: linear-gradient(45deg, var(--saffron), var(--maroon)); color: white; border: none; padding: 1rem; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
-        .add-to-cart:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-        
-        /* Reviews */
-        .reviews { position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.95); padding: 1rem; border-radius: 10px; font-size: 0.9rem; display: flex; flex-direction: column; gap: 0.5rem; }
-        .avg-rating { font-weight: 700; color: var(--maroon); }
-        
-        /* Cart Modal */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; backdrop-filter: blur(10px); }
-        .modal-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; border-radius: 20px; padding: 2rem; animation: modalSlideIn 0.3s ease; }
-        @keyframes modalSlideIn { from { opacity: 0; transform: translate(-50%, -60%); } }
-        .close { position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; cursor: pointer; color: var(--dark); }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #eee; }
-        .item-details h4 { margin-bottom: 0.5rem; }
-        .item-price { font-weight: 700; color: var(--saffron); }
-        .total { font-size: 2rem; font-weight: 700; text-align: center; margin: 2rem 0; color: var(--maroon); }
-        .checkout-section { background: var(--light-bg); padding: 2rem; border-radius: 15px; margin-top: 1rem; }
-        #qr-img { max-width: 250px; margin: 1rem auto; display: block; border: 5px solid white; border-radius: 15px; box-shadow: var(--shadow); }
-        #qr-total { font-size: 2.5rem; font-weight: 700; color: var(--saffron); text-align: center; }
-        .whatsapp-btn { background: #25D366; color: white; border: none; padding: 1.2rem 2rem; border-radius: 50px; font-size: 1.2rem; width: 100%; margin-top: 1rem; cursor: pointer; transition: var(--transition); }
-        .whatsapp-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-        .trust-badges { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
-        .badge { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-        .badge i { font-size: 2rem; color: var(--saffron); }
-        
-        /* About */
-        .about-content { max-width: 800px; margin: 0 auto; text-align: center; }
-        .about-content p { font-size: 1.2rem; margin-bottom: 2rem; }
-        
-        /* Contact */
-        .contact-form { max-width: 600px; margin: 0 auto; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
-        .form-group input, .form-group textarea { width: 100%; padding: 1rem; border: 2px solid #eee; border-radius: 12px; font-size: 1rem; transition: var(--transition); }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--saffron); box-shadow: 0 0 0 3px rgba(255,153,51,0.1); }
-        .submit-btn { background: var(--maroon); color: white; border: none; padding: 1rem 3rem; border-radius: 12px; font-size: 1.1rem; cursor: pointer; transition: var(--transition); width: 100%; }
-        .submit-btn:hover { background: var(--saffron); transform: translateY(-2px); }
-        
-        /* Footer */
-        footer { background: var(--dark); color: white; text-align: center; padding: 3rem 0 1rem; }
-        .footer-content { display: flex; flex-wrap: wrap; justify-content: center; gap: 3rem; margin-bottom: 2rem; }
-        .footer-section h4 { color: var(--saffron); margin-bottom: 1rem; }
-        .footer-section ul { list-style: none; }
-        .footer-section a { color: #ccc; text-decoration: none; transition: var(--transition); }
-        .footer-section a:hover { color: var(--saffron); }
-        .contact-info { font-size: 1.2rem; font-weight: 600; color: var(--saffron); }
-        
-        /* Mobile */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-            .products-grid { grid-template-columns: 1fr; }
-            .footer-content { flex-direction: column; gap: 1.5rem; }
-            section { padding: 60px 0; }
-        }
-        
-        /* Animations */
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .float { animation: float 3s ease-in-out infinite; }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TheRajasthaniTaste - Authentic Homemade Rajasthani Snacks</title>
+  <meta name="description" content="Premium homemade Rajasthani Khakhra, Puri, Khichiya by Rajkumari Ranka. Order online with UPI payments. Fresh, traditional taste from Bikaner.">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="TheRajasthaniTaste - Authentic Homemade Rajasthani Snacks">
+  <meta property="og:description" content="Premium homemade Rajasthani Khakhra, Puri & Khichiya by Rajkumari Ranka. Fresh, traditional taste from Bikaner.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1603048297194-8f7d9e7f8d8b?w=1200">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TheRajasthaniTaste - Authentic Homemade Rajasthani Snacks">
+  <meta name="twitter:description" content="Premium homemade Rajasthani Khakhra, Puri & Khichiya by Rajkumari Ranka.">
+
+  <!-- Fonts & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Razorpay checkout script (client-side only for demo/testing). For production, create order server-side. -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #4a4a4a; background: linear-gradient(135deg, #f8f1e9 0%, #e8d5b7 100%); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* Navigation */
+    nav { background: linear-gradient(135deg, #d97706, #b91c1c); position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    nav .container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 20px; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fef3c7; font-weight: 700; }
+    .nav-links { display: flex; list-style: none; }
+    .nav-links a, .nav-links button { color: #fef3c7; text-decoration: none; margin-left: 2rem; font-weight: 500; background: none; border: none; cursor: pointer; }
+    .nav-links a:hover, .nav-links button:hover { color: #fff; }
+    .cart { position: relative; font-size: 1.5rem; color: #fef3c7; cursor: pointer; }
+    .cart-count { position: absolute; top: -8px; right: -8px; background: #ef4444; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; }
+    .hamburger { display: none; flex-direction: column; cursor: pointer; }
+    .hamburger span { width: 25px; height: 3px; background: #fef3c7; margin: 3px 0; transition: 0.3s; }
+
+    /* Hero Banner */
+    .hero { background: linear-gradient(rgba(217,119,6,0.8), rgba(185,28,28,0.8)), url('https://images.unsplash.com/photo-1603048297194-8f7d9e7f8d8b?w=1200'); background-size: cover; background-position: center; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white; margin-top: 70px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    h2 { font-family: 'Playfair Display', serif; font-size: 3rem; text-align: center; color: #b91c1c; margin-bottom: 3rem; }
+
+    /* Products */
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; padding-bottom: 1rem; display:flex; flex-direction:column; }
+    .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+    .product-img { height: 220px; background: #f3f4f6; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #d1d5db; }
+    .product-info { padding: 1.5rem; flex:1; display:flex; flex-direction:column; }
+    .product-name { font-size: 1.3rem; font-weight: 600; color: #b91c1c; margin-bottom: 0.5rem; }
+    .price { font-size: 1.2rem; font-weight: 700; color: #d97706; margin-bottom: 1rem; }
+    .quantity { display: flex; align-items: center; margin-bottom: 1rem; gap:8px; }
+    .quantity input { width: 80px; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 5px; text-align: center; margin-left:8px; }
+    .btn { background: linear-gradient(135deg, #d97706, #b91c1c); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 50px; cursor: pointer; font-weight: 600; transition: all 0.3s; width: 100%; }
+    .btn:hover { transform: scale(1.02); }
+    .reviews { margin-top: 1rem; }
+    .stars { color: #fbbf24; }
+    .review-form { display: none; margin-top: 1rem; }
+    .review-form input, .review-form textarea, .review-form select { width: 100%; padding: 0.6rem; margin-bottom: 0.6rem; border: 1px solid #d1d5db; border-radius: 10px; }
+    .avg-rating { text-align: center; font-weight: 600; color: #059669; margin-bottom:0.6rem;}
+
+    /* Cart */
+    .cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; }
+    .cart-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 20px; max-width: 700px; width: 95%; max-height: 85vh; overflow-y: auto; }
+    .cart-item { display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb; gap:8px; align-items:center; }
+    .remove { background: #ef4444; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 50%; cursor: pointer; }
+
+    /* Checkout */
+    .checkout { display: none; margin-top:1rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+    .form-group input, .form-group textarea { width: 100%; padding: 1rem; border: 1px solid #d1d5db; border-radius: 10px; }
+
+    /* About & Contact */
+    .about, .contact { text-align: center; }
+    .owner { font-size: 1.2rem; color: #b91c1c; font-weight: 600; }
+    .contact form { max-width: 500px; margin: 0 auto; }
+    .trust-badges { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+    .badge { background: #10b981; color: white; padding: 1rem; border-radius: 10px; }
+
+    /* Footer */
+    footer { background: #4a4a4a; color: white; text-align: center; padding: 2rem 0; }
+    .upi-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .upi-btn { background: #059669; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; text-decoration: none; }
+
+    /* Animations */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .product-card, .about p { animation: fadeInUp 0.6s ease forwards; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: #d97706; flex-direction: column; justify-content: start; align-items: center; padding-top: 2rem; transition: 0.3s; }
+      .nav-links.active { left: 0; }
+      .hero h1 { font-size: 2.5rem; }
+      .products { grid-template-columns: 1fr; }
+    }
+
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+  </style>
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": { "@type": "Product", "name": "Chana Khakhra", "description": "Homemade Chana Khakhra", "offers": { "@type": "Offer", "price": "350", "priceCurrency": "INR" } }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": { "@type": "Product", "name": "Gehu Khakhra", "description": "Homemade Gehu Khakhra", "offers": { "@type": "Offer", "price": "350", "priceCurrency": "INR" } }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": { "@type": "Product", "name": "Morh Khakhra", "description": "Homemade Morh Khakhra", "offers": { "@type": "Offer", "price": "350", "priceCurrency": "INR" } }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="logo">TheRajasthaniTaste</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="cart-btn" onclick="toggleCart()">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count" id="cart-count">0</span>
-            </button>
-        </nav>
-    </header>
+  <nav>
+    <div class="container">
+      <div class="logo">TheRajasthaniTaste</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <button id="cart-toggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="cart-modal" class="cart">
+            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+            <span class="cart-count" id="cart-count">0</span>
+            <span class="sr-only">Open cart</span>
+          </button>
+        </li>
+      </ul>
+      <div class="hamburger" id="hamburger" aria-label="Toggle navigation" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Hero -->
+  <main>
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Authentic Rajasthani Taste</h1>
-            <p>Homemade Khakhra, Puri & Khichiya straight from Bikaner kitchens. Fresh, Crispy, Traditional.</p>
-            <a href="#products" class="cta-btn" onclick="scrollToSection('products')">Order Now</a>
-        </div>
+      <div>
+        <h1>TheRajasthaniTaste</h1>
+        <p>Authentic Homemade Rajasthani Snacks by Rajkumari Ranka<br>Fresh Khakhra, Puri & Khichiya Delivered to Your Door</p>
+        <a href="#products" class="btn" style="display: inline-block; font-size: 1.2rem;">Shop Now</a>
+      </div>
     </section>
 
-    <!-- Products -->
-    <section id="products" class="container">
-        <h2 class="section-title">Our Signature Snacks</h2>
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1612366456024-61300cd66d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
-                    <div class="product-overlay">
-                        <div class="rating">
-                            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>
-                            <span>4.9 (127)</span>
-                        </div>
-                        <div class="reviews">
-                            <div class="avg-rating">4.9/5</div>
-                            <small>127 reviews</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Chana Khakhra</h3>
-                    <div class="product-price">₹350/kg</div>
-                    <div class="qty-selector">
-                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
-                        <span class="qty">1</span>
-                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
-                    </div>
-                    <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1577612486786-0f4e3ec72041?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
-                    <div class="product-overlay">
-                        <div class="rating">
-                            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>
-                            <span>4.8 (89)</span>
-                        </div>
-                        <div class="reviews">
-                            <div class="avg-rating">4.8/5</div>
-                            <small>89 reviews</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Gehu Khakhra</h3>
-                    <div class="product-price">₹350/kg</div>
-                    <div class="qty-selector">
-                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
-                        <span class="qty">1</span>
-                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
-                    </div>
-                    <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-
+    <section id="products">
+      <div class="container">
+        <h2>Our Premium Snacks</h2>
+        <div class="products" id="products-grid" aria-live="polite">
+          <!-- Products populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container">
+        <h2>About Us</h2>
+        <p>Indulge in the rich, authentic flavors of Rajasthan with TheRajasthaniTaste. Crafted with love by Rajkumari Ranka using traditional recipes and freshest ingredients from Bikaner. Hygienic, homemade, and packed with royal taste – perfect for tea time or gifting.</p>
+        <p class="owner">Owner: Rajkumari Ranka</p>
+        <div class="trust-badges">
+          <div class="badge"><i class="fas fa-shield-alt"></i> 100% Homemade</div>
+          <div class="badge"><i class="fas fa-star"></i> 5-Star Reviews</div>
+          <div class="badge"><i class="fas fa-truck"></i> Fast Delivery</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p>Call/WhatsApp: <a href="tel:9928166780" style="color: #b91c1c; font-weight: 600;">9928166780</a></p>
+        <form id="contact-form" name="contact-form">
+          <div class="form-group">
+            <label for="contact-name">Name</label>
+            <input type="text" id="contact-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-phone">Phone</label>
+            <input type="tel" id="contact-phone" name="phone" pattern="[0-9]{10}" placeholder="10 digit mobile" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Enquiry</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Cart Modal (accessible dialog) -->
+  <div class="cart-modal" id="cart-modal" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+    <div class="cart-content" role="document">
+      <h3 id="cart-title">Shopping Cart</h3>
+      <div id="cart-items" aria-live="polite"></div>
+
+      <div class="checkout" id="checkout" aria-hidden="true">
+        <h4>Total: ₹<span id="total">0</span></h4>
+        <form id="checkout-form" name="checkout-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="buyer_name" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="buyer_phone" pattern="[0-9]{10}" required>
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea id="address" name="buyer_address" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn">Pay with UPI/Card</button>
+        </form>
+        <div style="margin-top: 0.75rem;">
+          <small>Or send payment to UPI VPA (example): <strong>merchant@bank</strong>. Replace with your actual VPA. For secure payments, create server-side orders and verify receipts.</small>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem; display:flex; gap:0.5rem; justify-content:flex-end;">
+        <button class="btn" id="checkout-whatsapp" style="background:#25D366;"><i class="fab fa-whatsapp"></i> WhatsApp Order</button>
+        <button class="btn" id="close-cart" style="background: #6b7280;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 TheRajasthaniTaste by Rajkumari Ranka. All rights reserved. | Bikaner, Rajasthan</p>
+      <div class="upi-buttons">
+        <!-- IMPORTANT: pa should be your actual UPI ID (VPA) like merchant@bank. The current links are examples. -->
+        <a href="upi://pay?pa=merchant@bank&pn=TheRajasthaniTaste&am=" class="upi-btn" target="_blank" rel="noopener">Pay UPI</a>
+        <a href="https://wa.me/919928166780" class="upi-btn" id="footer-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp Order</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  /*
+    Updated front-end behavior:
+    - cart & reviews persist in localStorage
+    - no inline event handlers
+    - user-generated content rendered safely via textContent
+    - accessible cart modal with focus trap & Esc
+    - form name attributes & basic validation
+    - WhatsApp order prefill
+    - Razorpay client-side call kept for demo (replace with server-side order generation in production).
+  */
+
+  // Sample products
+  const products = [
+    { id: 1, name: 'Chana Khakhra', price: 350, imgText: '🍪' },
+    { id: 2, name: 'Gehu Khakhra', price: 350, imgText: '🌾' },
+    { id: 3, name: 'Morh Khakhra', price: 350, imgText: '🥜' },
+    { id: 4, name: 'Mogar Puri', price: 450, imgText: '🥞' },
+    { id: 5, name: 'Besan Puri', price: 450, imgText: '🫓' },
+    { id: 6, name: 'Gehu Khichiya', price: 180, imgText: '🍲' },
+    { id: 7, name: 'Chawal Khichiya', price: 200, imgText: '🍚' }
+  ];
+
+  // Local storage keys
+  const STORAGE_CART = 'trt_cart_v1';
+  const STORAGE_REVIEWS = 'trt_reviews_v1';
+
+  // State
+  let cart = loadCart();
+  let reviews = loadReviews();
+
+  // Accessibility helpers for modal
+  let lastFocusedElement = null;
+  const modal = document.getElementById('cart-modal');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    setupNav();
+    renderCart();
+    updateCartCount();
+    setupContactForm();
+    setupCartBehavior();
+  });
+
+  // ---------- Persistence ----------
+  function loadCart() {
+    try {
+      const raw = localStorage.getItem(STORAGE_CART);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      console.warn('Failed to load cart', e);
+      return [];
+    }
+  }
+  function saveCart() {
+    try {
+      localStorage.setItem(STORAGE_CART, JSON.stringify(cart));
+    } catch (e) {
+      console.warn('Failed to save cart', e);
+    }
+  }
+  function loadReviews() {
+    try {
+      const raw = localStorage.getItem(STORAGE_REVIEWS);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      console.warn('Failed to load reviews', e);
+      return {};
+    }
+  }
+  function saveReviews() {
+    try {
+      localStorage.setItem(STORAGE_REVIEWS, JSON.stringify(reviews));
+    } catch (e) { console.warn('Failed to save reviews', e); }
+  }
+
+  // ---------- Safe rendering ----------
+  function renderProducts() {
+    const grid = document.getElementById('products-grid');
+    grid.innerHTML = '';
+    products.forEach(product => {
+      const card = document.createElement('article');
+      card.className = 'product-card';
+      card.setAttribute('data-id', product.id);
+      // Image area (emoji/text)
+      const imgDiv = document.createElement('div');
+      imgDiv.className = 'product-img';
+      imgDiv.setAttribute('aria-hidden', 'true');
+      imgDiv.textContent = product.imgText;
+
+      // Info
+      const info = document.createElement('div');
+      info.className = 'product-info';
+
+      const name = document.createElement('div');
+      name.className = 'product-name';
+      name.textContent = product.name;
+
+      const price = document.createElement('div');
+      price.className = 'price';
+      price.textContent = `₹${product.price}/kg`;
+
+      const avg = document.createElement('div');
+      avg.className = 'avg-rating';
+      avg.textContent = getAvgRatingText(product.id);
+
+      const qtyWrap = document.createElement('div');
+      qtyWrap.className = 'quantity';
+      const qtyLabel = document.createElement('label');
+      qtyLabel.setAttribute('for', `qty-${product.id}`);
+      qtyLabel.textContent = 'Qty (kg):';
+      const qtyInput = document.createElement('input');
+      qtyInput.type = 'number';
+      qtyInput.min = 1;
+      qtyInput.max = 10;
+      qtyInput.value = 1;
+      qtyInput.id = `qty-${product.id}`;
+
+      qtyWrap.appendChild(qtyLabel);
+      qtyWrap.appendChild(qtyInput);
+
+      const addBtn = document.createElement('button');
+      addBtn.className = 'btn';
+      addBtn.type = 'button';
+      addBtn.textContent = 'Add to Cart';
+      addBtn.addEventListener('click', () => {
+        const q = parseInt(qtyInput.value) || 1;
+        addToCart(product.id, q);
+      });
+
+      // Reviews area
+      const reviewsDiv = document.createElement('div');
+      reviewsDiv.className = 'reviews';
+      const toggle = document.createElement('small');
+      toggle.style.cursor = 'pointer';
+      toggle.style.color = '#d97706';
+      toggle.textContent = 'Add Review';
+      toggle.tabIndex = 0;
+      toggle.addEventListener('click', () => toggleReviewForm(product.id));
+      toggle.addEventListener('keypress', (e) => { if (e.key === 'Enter') toggleReviewForm(product.id); });
+
+      const formDiv = document.createElement('div');
+      formDiv.className = 'review-form';
+      formDiv.id = `review-${product.id}`;
+
+      const select = document.createElement('select');
+      select.id = `rating-${product.id}`;
+      [5,4,3,2,1].forEach(n => {
+        const opt = document.createElement('option');
+        opt.value = n;
+        opt.textContent = n;
+        select.appendChild(opt);
+      });
+
+      const commentInput = document.createElement('input');
+      commentInput.type = 'text';
+      commentInput.id = `comment-${product.id}`;
+      commentInput.placeholder = 'Your review';
+
+      const submitReviewBtn = document.createElement('button');
+      submitReviewBtn.type = 'button';
+      submitReviewBtn.className = 'btn';
+      submitReviewBtn.style.width = 'auto';
+      submitReviewBtn.style.fontSize = '0.9rem';
+      submitReviewBtn.textContent = 'Submit';
+      submitReviewBtn.addEventListener('click', () => submitReview(product.id));
+
+      formDiv.appendChild(select);
+      formDiv.appendChild(commentInput);
+      formDiv.appendChild(submitReviewBtn);
+
+      // Append all
+      info.appendChild(name);
+      info.appendChild(price);
+      info.appendChild(avg);
+      info.appendChild(qtyWrap);
+      info.appendChild(addBtn);
+      reviewsDiv.appendChild(toggle);
+      reviewsDiv.appendChild(formDiv);
+      info.appendChild(reviewsDiv);
+
+      card.appendChild(imgDiv);
+      card.appendChild(info);
+      grid.appendChild(card);
+    });
+  }
+
+  function getAvgRatingText(id) {
+    const userReviews = reviews[id] || [];
+    if (!userReviews.length) return 'No reviews';
+    const avg = userReviews.reduce((s,r) => s + (Number(r.rating)||0), 0) / userReviews.length;
+    return `⭐ ${avg.toFixed(1)} (${userReviews.length})`;
+  }
+
+  function toggleReviewForm(id) {
+    const f = document.getElementById(`review-${id}`);
+    if (!f) return;
+    f.style.display = f.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function submitReview(id) {
+    const ratingSelect = document.getElementById(`rating-${id}`);
+    const commentInput = document.getElementById(`comment-${id}`);
+    if (!ratingSelect || !commentInput) return;
+    const rating = parseInt(ratingSelect.value, 10) || 5;
+    let comment = commentInput.value.trim();
+    if (comment.length > 250) comment = comment.slice(0,250); // limit
+    // Save review safely (we'll render textContent later)
+    if (!reviews[id]) reviews[id] = [];
+    reviews[id].push({ rating, comment, created_at: new Date().toISOString() });
+    saveReviews();
+    commentInput.value = '';
+    renderProducts(); // Refresh to show updated avg (safe)
+    alert('Review added — thanks!');
+  }
+
+  // ---------- Cart ----------
+  function addToCart(id, qty) {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+    const existing = cart.find(i => i.id === id);
+    if (existing) {
+      existing.qty = Math.min(20, existing.qty + qty); // cap to 20kg
+    } else {
+      cart.push({ id: product.id, name: product.name, price: product.price, qty });
+    }
+    saveCart();
+    updateCartCount();
+    renderCart();
+  }
+
+  function updateCartCount() {
+    const count = cart.reduce((s, i) => s + Number(i.qty || 0), 0);
+    document.getElementById('cart-count').textContent = count;
+  }
+
+  function renderCart() {
+    const itemsContainer = document.getElementById('cart-items');
+    itemsContainer.innerHTML = '';
+    let total = 0;
+    if (!cart.length) {
+      const empty = document.createElement('p');
+      empty.textContent = 'Your cart is empty.';
+      itemsContainer.appendChild(empty);
+      document.getElementById('checkout').style.display = 'none';
+    } else {
+      cart.forEach(item => {
+        const sub = item.price * item.qty;
+        total += sub;
+        const row = document.createElement('div');
+        row.className = 'cart-item';
+        const left = document.createElement('div');
+        left.textContent = `${item.name} x${item.qty}kg`;
+        const right = document.createElement('div');
+        right.style.display = 'flex';
+        right.style.gap = '8px';
+        right.style.alignItems = 'center';
+
+        const price = document.createElement('span');
+        price.textContent = `₹${sub}`;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'remove';
+        removeBtn.type = 'button';
+        removeBtn.setAttribute('aria-label', `Remove ${item.name}`);
+        removeBtn.textContent = '×';
+        removeBtn.addEventListener('click', () => {
+          removeFromCart(item.id);
+        });
+
+        right.appendChild(price);
+        right.appendChild(removeBtn);
+
+        row.appendChild(left);
+        row.appendChild(right);
+        itemsContainer.appendChild(row);
+      });
+
+      document.getElementById('checkout').style.display = 'block';
+    }
+    document.getElementById('total').textContent = total;
+    saveCart();
+    updateWhatsAppLinks();
+  }
+
+  function removeFromCart(id) {
+    cart = cart.filter(i => i.id !== id);
+    saveCart();
+    updateCartCount();
+    renderCart();
+  }
+
+  // ---------- Checkout & payments ----------
+  // Note: For production, create an order on your server via the Razorpay API,
+  // return order_id, then pass it to Razorpay checkout options with proper key_id.
+  const checkoutForm = document.getElementById('checkout-form');
+  checkoutForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const buyerName = document.getElementById('name').value.trim();
+    const buyerPhone = document.getElementById('phone').value.trim();
+    const buyerAddress = document.getElementById('address').value.trim();
+    if (!buyerName || !/^\d{10}$/.test(buyerPhone) || !buyerAddress) {
+      alert('Please fill valid name, 10-digit phone, and address.');
+      return;
+    }
+    const total = Number(document.getElementById('total').textContent) || 0;
+    if (!total) {
+      alert('Cart is empty.');
+      return;
+    }
+
+    // For demo/testing only: client-side checkout (Razorpay test). Replace with server integration.
+    const options = {
+      key: 'rzp_test_your_key_here', // <-- REPLACE with your test/production key. For production, generate order server-side.
+      amount: total * 100,
+      currency: 'INR',
+      name: 'TheRajasthaniTaste',
+      description: `Order by ${buyerName}`,
+      handler: function (response) {
+        alert('Payment Successful! Order ID: ' + response.razorpay_payment_id + '\nWe will confirm via WhatsApp.');
+        // Clear cart after payment
+        cart = [];
+        saveCart();
+        updateCartCount();
+        renderCart();
+        closeModal();
+      },
+      prefill: {
+        name: buyerName,
+        contact: buyerPhone
+      },
+      notes: {
+        address: buyerAddress
+      }
+    };
+
+    // If you have a server that creates an order, include order_id: 'order_XXXX'
+    const rzp = new Razorpay(options);
+    rzp.open();
+  });
+
+  // ---------- WhatsApp prefill ----------
+  function buildWhatsAppMessage() {
+    if (!cart.length) return 'Hi, I would like to place an order. Cart is currently empty.';
+    let lines = ['Hello Rajkumari, I want to place an order:'];
+    cart.forEach(item => {
+      lines.push(`${item.name} x${item.qty}kg — ₹${item.price * item.qty}`);
+    });
+    lines.push(`Total: ₹${cart.reduce((s,i) => s + i.price * i.qty,0)}`);
+    lines.push('Name:');
+    lines.push('Phone:');
+    lines.push('Address:');
+    return encodeURIComponent(lines.join('\n'));
+  }
+
+  function updateWhatsAppLinks() {
+    const waMsg = buildWhatsAppMessage();
+    const footerWa = document.getElementById('footer-whatsapp');
+    const checkoutWa = document.getElementById('checkout-whatsapp');
+    const number = '919928166780'; // include country code, actual business number
+    if (footerWa) footerWa.href = `https://wa.me/${number}?text=${waMsg}`;
+    if (checkoutWa) checkoutWa.onclick = () => {
+      window.open(`https://wa.me/${number}?text=${waMsg}`, '_blank', 'noopener');
+    };
+  }
+
+  // ---------- Contact form ----------
+  function setupContactForm() {
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value.trim();
+      const phone = document.getElementById('contact-phone').value.trim();
+      const message = document.getElementById('contact-message').value.trim();
+      if (!name || !/^\d{10}$/.test(phone) || !message) {
+        alert('Please fill name, a valid 10-digit phone, and a message.');
+        return;
+      }
+      // For production: POST to your server or CRM. Currently just show confirmation.
+      alert('Enquiry sent! We will contact you on WhatsApp.');
+      form.reset();
+    });
+  }
+
+  // ---------- Nav & mobile behavior ----------
+  function setupNav() {
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+    hamburger.addEventListener('keypress', (e) => { if (e.key === 'Enter') hamburger.click(); });
+
+    // Close nav on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  }
+
+  // ---------- Cart modal accessibility ----------
+  const cartToggle = document.getElementById('cart-toggle');
+  const closeCartBtn = document.getElementById('close-cart');
+
+  function setupCartBehavior() {
+    cartToggle.addEventListener('click', openModal);
+    closeCartBtn.addEventListener('click', closeModal);
+
+    // close on outside click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // close on Escape & trap focus while open
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'block') {
+        e.preventDefault();
+        closeModal();
+      }
+    });
+  }
+
+  function openModal() {
+    lastFocusedElement = document.activeElement;
+    renderCart();
+    modal.style.display = 'block';
+    modal.querySelector('.cart-content').focus();
+    cartToggle.setAttribute('aria-expanded', 'true');
+    trapFocus(modal);
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    cartToggle.setAttribute('aria-expanded', 'false');
+    if (lastFocusedElement) lastFocusedElement.focus();
+    releaseFocusTrap();
+  }
+
+  // Focus trap implementation
+  let focusTrapHandler = null;
+  function trapFocus(modalEl) {
+    const focusableSelectors = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
+    const focusable = modalEl.querySelectorAll(focusableSelectors);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    first.focus();
+
+    focusTrapHandler = function (e) {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey) { // shift + tab
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else { // tab
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener('keydown', focusTrapHandler);
+  }
+  function releaseFocusTrap() {
+    if (focusTrapHandler) document.removeEventListener('keydown', focusTrapHandler);
+    focusTrapHandler = null;
+  }
+
+  </script>
+</body>
+</html>
